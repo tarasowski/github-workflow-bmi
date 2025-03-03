@@ -19,4 +19,5 @@ function calculateBMI(weight, height) {
   return bmi;
 }
 
-module.exports = { calculateBMI }
+module.exports = { calculateBMI };
+

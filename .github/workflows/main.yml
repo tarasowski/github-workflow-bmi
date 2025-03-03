@@ -19,3 +19,7 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
+
+      //- hier soll die calculateBMI getestet werden
+      // mit node bmi.test.js
+
