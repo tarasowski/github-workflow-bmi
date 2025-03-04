@@ -40,11 +40,14 @@ jobs:
           # Überprüfe, ob Node.js und npm verfügbar sind
           node -v  # Node.js-Version anzeigen
           npm -v   # npm-Version anzeigen
+
           mkdir -p /home/ubuntu/bmi-calculator
           cd /home/ubuntu/bmi-calculator
           git clone https://github.com/${{ github.repository }}.git .
           npm install
-          node server.js
+          # pm2 for starting the server
+          # the server as process bzw. als service starten
+          nohup node server.js > /dev/null 2>&1 &
           EOF
 
           # deploy to ec2
