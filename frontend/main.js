@@ -1,9 +1,3 @@
-const form = document.getElementById('bmiForm');
-
-form.addEventListener('submit', function(event) {
-  event.preventDefault();
-  updateUI();
-})
 
 function updateUI() {
   // Logik zur Aktualisierung des UI hier
@@ -17,7 +11,6 @@ function updateUI() {
   result.innerHTML = bmi;
 
 }
-
 
 function calculateBMI(weight, height) {
   // Logik zur Berechnung des BMI hier
@@ -33,5 +26,12 @@ if (typeof module !== "undefined" && module.exports) {
   module.exports = { calculateBMI };
 } else {
   console.log("Frontend-Modul geladen");
+  const form = document.getElementById('bmiForm');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    updateUI();
+  })
+
 }
 
