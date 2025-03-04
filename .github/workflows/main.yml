@@ -41,13 +41,24 @@ jobs:
           node -v  # Node.js-Version anzeigen
           npm -v   # npm-Version anzeigen
 
+          npm install -g pm2
+
           mkdir -p /home/ubuntu/bmi-calculator
           cd /home/ubuntu/bmi-calculator
-          git clone https://github.com/${{ github.repository }}.git .
-          npm install
-          # pm2 for starting the server
-          # the server as process bzw. als service starten
-          nohup node server.js > /dev/null 2>&1 &
-          EOF
 
-          # deploy to ec2
+          # Repository klonen (nur, wenn es noch nicht existiert)
+          if [ ! -d "/home/ubuntu/bmi-calculator/.git" ]; then
+            git clone https://github.com/${{ github.repository }}.git .
+          else
+            git pull  # Falls das Repo bereits existiert, führe ein Pull durch
+          fi
+
+          npm install
+
+          # Starte den Server mit PM2
+          pm2 restart bmi-calculator || pm2 start server.js --name "bmi-calculator" --watch
+
+          # Stelle sicher, dass der Server bei einem Systemneustart automatisch neu startet
+          pm2 startup systemd
+          pm2 save
+          EOF
