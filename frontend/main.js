@@ -1,8 +1,3 @@
-Array
-  .from(document.getElementsByTagName('input'))
-  .forEach(element => {
-    element.addEventListener('change', updateUI);
-  });
 
 function updateUI() {
   // Logik zur Aktualisierung des UI hier
@@ -31,5 +26,12 @@ if (typeof module !== "undefined" && module.exports) {
   module.exports = { calculateBMI };
 } else {
   console.log("Frontend-Modul geladen");
+  const form = document.getElementById('bmiForm');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    updateUI();
+  })
+
 }
 
