@@ -30,11 +30,13 @@ jobs:
 
       - name: Deploy to EC2
         run: | 
-          ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} ubuntu@${{ secrets.EC2_PUBLIC_IP }} 
-          mkdir /home/ubuntu/bmi-calculator
+          # SSH to EC2 instance (no need to specify -i because ssh-agent is managing the key)
+          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_PUBLIC_IP }} << 'EOF'
+          mkdir -p /home/ubuntu/bmi-calculator
           cd /home/ubuntu/bmi-calculator
           git clone https://github.com/${{ github.repository }}.git .
           npm install
           node server.js
+          EOF
 
       # deploy to ec2
