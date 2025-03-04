@@ -28,7 +28,8 @@ jobs:
           npm -v   # npm-Version anzeigen
 
           npm install -g pm2
-
+          
+          rm -rf /home/ubuntu/bmi-calculator
           mkdir -p /home/ubuntu/bmi-calculator
           cd /home/ubuntu/bmi-calculator
 
