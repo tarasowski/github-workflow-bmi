@@ -2,7 +2,7 @@ Array
   .from(document.getElementsByTagName('input'))
   .forEach(element => {
     element.addEventListener('change', updateUI);
-});
+  });
 
 function updateUI() {
   // Logik zur Aktualisierung des UI hier
@@ -20,6 +20,11 @@ function calculateBMI(weight, height) {
 }
 
 if (typeof module !== "undefined" && module.exports) {
+  // this if from nodejs
+  // this code will be executed in nodejs
+  // not in the browser
   module.exports = { calculateBMI };
+} else {
+  console.log("Frontend-Modul geladen");
 }
 
