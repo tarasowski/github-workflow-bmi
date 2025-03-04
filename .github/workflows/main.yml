@@ -32,6 +32,14 @@ jobs:
         run: | 
           # SSH to EC2 instance (no need to specify -i because ssh-agent is managing the key)
           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_PUBLIC_IP }} << 'EOF'
+          # Lade NVM und die Node.js-Version, die über NVM installiert wurde
+          export NVM_DIR="/home/ubuntu/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # NVM laden
+          nvm use v22.14.0  # Die spezifische Node.js-Version laden
+
+          # Überprüfe, ob Node.js und npm verfügbar sind
+          node -v  # Node.js-Version anzeigen
+          npm -v   # npm-Version anzeigen
           mkdir -p /home/ubuntu/bmi-calculator
           cd /home/ubuntu/bmi-calculator
           git clone https://github.com/${{ github.repository }}.git .
@@ -39,4 +47,4 @@ jobs:
           node server.js
           EOF
 
-      # deploy to ec2
+          # deploy to ec2
