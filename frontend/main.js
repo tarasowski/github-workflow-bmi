@@ -1,8 +1,9 @@
-Array
-  .from(document.getElementsByTagName('input'))
-  .forEach(element => {
-    element.addEventListener('change', updateUI);
-  });
+const form = document.getElementById('bmiForm');
+
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+  updateUI();
+})
 
 function updateUI() {
   // Logik zur Aktualisierung des UI hier
@@ -16,6 +17,7 @@ function updateUI() {
   result.innerHTML = bmi;
 
 }
+
 
 function calculateBMI(weight, height) {
   // Logik zur Berechnung des BMI hier

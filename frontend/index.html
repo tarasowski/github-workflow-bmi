@@ -5,24 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Your site description">
     <title>Mein BMI Rechner</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-  <div>
-    <label for="weight">Gewicht (in kg):</label>
-    <input type="number" id="weight">
-    <span id="show_weight"></span>
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">BMI Rechner</h1>
+
+    <!-- Form for weight and height input -->
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form id="bmiForm" action="#" method="post">
+          <div class="mb-3">
+            <label for="weight" class="form-label">Gewicht (in kg):</label>
+            <input type="number" class="form-control" id="weight" required>
+            <div id="show_weight" class="form-text"></div>
+          </div>
+
+          <div class="mb-3">
+            <label for="height" class="form-label">Größe (in cm):</label>
+            <input type="number" class="form-control" id="height" required>
+            <div id="show_height" class="form-text"></div>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100">Berechnen</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Result display -->
+    <div id="result" class="mt-4 text-center">
+      <!-- The BMI value will be inserted here -->
+    </div>
   </div>
 
-  <div>
-    <label for="height">Größe (in cm):</label>
-    <input type="number" id="height">
-    <span id="show_height"></span>
-  </div>
-
-  <div id="result">
-    <!-- hier wird der bmi wert programmatisch eingefügt -->
-  </div>
+  <!-- Bootstrap 5 JS and Popper.js (needed for some Bootstrap components) -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
   <script src="main.js"></script>
 </body>
