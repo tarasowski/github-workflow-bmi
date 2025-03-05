@@ -32,14 +32,9 @@ jobs:
           rm -rf /home/ubuntu/bmi-calculator
           mkdir -p /home/ubuntu/bmi-calculator
           cd /home/ubuntu/bmi-calculator
-
-          # Repository klonen (nur, wenn es noch nicht existiert)
-          if [ ! -d "/home/ubuntu/bmi-calculator/.git" ]; then
-            git clone https://github.com/${{ github.repository }}.git .
-          else
-            git pull  # Falls das Repo bereits existiert, führe ein Pull durch
-          fi
-
+          
+          git clone https://github.com/${{ github.repository }}.git .
+  
           npm install
 
           # Starte den Server mit PM2
